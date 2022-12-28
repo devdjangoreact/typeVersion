@@ -9,9 +9,9 @@ drf-yasg==1.21.4
 djangorestframework-simplejwt==5.2.1
 django-cors-headers==3.13.0
 
-# terminal
-eventlet
-python-engineio
-python-socketio
-# pytz==2018.7
-six
+# # terminal
+# eventlet
+# python-engineio
+# python-socketio
+# # pytz==2018.7
+# six

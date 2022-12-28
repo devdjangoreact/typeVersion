@@ -1,7 +1,6 @@
 // ** React Imports
 import { Outlet } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { Navigation } from "../components/Navigation";
+
 import { Sidebar } from "../components/Sidebar";
 import { SidebarMini } from "../components/SidebarMini";
 import { NavBar } from "../components/NavBar";
@@ -17,13 +16,20 @@ const BlankLayout = () => {
     <div className="flex justify-center items-start h-screen p-1 bg-orange-50">
       {desktop && (
         <>
-          <SidebarMini />
-          {menuState && <Sidebar />}
+          <SidebarMini key={"SidebarMini"} />
+          {menuState && <Sidebar key={"Sidebar"} />}
         </>
       )}
       <div className="w-full h-full">
-        {NavbarState && <NavBar />}
-        <div className="rounded-lg bg-red-100 h-[calc(100%-58px)] p-1 border overflow-y-scroll no-scrollbar">
+        {NavbarState && (
+          <NavBar
+            class={
+              "flex items-center justify-center space-x-4 px-4 mx-auto bg-blue-200 border-b rounded-lg mb-1 min-h-[55px]" ||
+              ""
+            }
+          />
+        )}
+        <div className="h-[calc(100%-60px)] overflow-y-scroll no-scrollbar">
           <Outlet />
         </div>
         <div></div>

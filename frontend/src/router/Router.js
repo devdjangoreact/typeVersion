@@ -10,34 +10,35 @@ import { lazy } from "react";
 // ** GetRoutes
 import { getRoutes } from "./routes";
 
-// ** Utils
-import { getUserData, getHomeRouteForLoggedInUser } from "../utility/Utils";
+import ErrorPage from "../views/pages/ErrorPage";
 
-// import React from "react";
-// import { Routes, Route } from "react-router-dom";
-import { HomePage } from "../views/pages/HomePage";
-import { FavouritesPage } from "../views/pages/FavouritesPage";
-import Registration from "../views/pages/authentication/Registration";
-import Login from "../views/pages/authentication/Login";
+//DashBoard
+import DashBoard from "../features/DashBoard";
+
+//auth
+import { Login, PrivateRoute, Registration } from "../features/auth/components";
+
+//githab
+import {
+  GitFavouritesPage,
+  GitSearchPage,
+} from "../features/github/components";
+
+// codehelp
+import {
+  CategoryPage,
+  EditCategoryPost,
+  PostsPage,
+} from "../features/sections/components";
+
+// components
+import {
+  MainComponents,
+  ChildComponents,
+} from "../features/components/components";
 
 const Router = () => {
-  // const allRoutes = getRoutes();
-
-  const getHomeRoute = () => {
-    const user = getUserData();
-    if (user) {
-      return getHomeRouteForLoggedInUser(user.groups[0].name);
-    } else {
-      return "/login";
-    }
-  };
-
   const routes = useRoutes([
-    {
-      path: "/",
-      index: true,
-      element: <Navigate replace to={getHomeRoute()} />,
-    },
     {
       path: "/login",
       children: [{ path: "/login", element: <Login /> }],
@@ -49,13 +50,54 @@ const Router = () => {
     {
       path: "/",
       element: <Layout />,
-      children: [{ path: "/", element: <HomePage /> }],
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          path: "/",
+          errorElement: <ErrorPage />,
+          children: [
+            { index: true, element: <PrivateRoute page={<DashBoard />} /> },
+            { path: "dashboard", element: <DashBoard /> },
+
+            {
+              path: "github",
+              children: [
+                { index: true, element: <GitSearchPage /> },
+                { path: "favourites", element: <GitFavouritesPage /> },
+              ],
+            },
+
+            {
+              path: ":slug_mini",
+              children: [
+                { index: true, element: <CategoryPage /> },
+                {
+                  path: ":slug",
+                  children: [
+                    { index: true, element: <PostsPage /> },
+                    {
+                      path: "post",
+                      element: <PostsPage />,
+                    },
+                  ],
+                },
+                { path: ":categoryId/edit", element: <EditCategoryPost /> },
+                { path: "create", element: <EditCategoryPost /> },
+              ],
+            },
+
+            // {
+            //   path: "components",
+            //   children: [
+            //     { index: true, element: <MainComponents /> },
+            //     { path: "scrollspy", element: <ChildComponents /> },
+            //   ],
+            // },
+          ],
+        },
+      ],
     },
-    {
-      path: "/favourites",
-      element: <Layout />,
-      children: [{ path: "/favourites", element: <FavouritesPage /> }],
-    },
+
     // {
     //   path: "*",
     //   element: <Layout />,

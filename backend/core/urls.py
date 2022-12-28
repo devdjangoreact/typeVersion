@@ -15,6 +15,8 @@ schema_view = get_schema_view(
         title="Snippets API",
         default_version="v1",
         description="Test description",
+        type=openapi.TYPE_ARRAY,
+        items=openapi.Items(type=openapi.TYPE_STRING), 
         terms_of_service="https://www.google.com/policies/terms/",
         contact=openapi.Contact(email="contact@snippets.local"),
         license=openapi.License(name="BSD License"),
@@ -25,8 +27,9 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('user_profile.urls')),
-    path('', include("codehelp.urls")),    
+    path('profile/', include('user_profile.urls_profile')),
+    re_path('auth/', include('user_profile.urls_auth')),
+    path('', include("sections.urls")),    
     path("", include("movies.urls")),
     
     path('api-auth/', include('rest_framework.urls')),

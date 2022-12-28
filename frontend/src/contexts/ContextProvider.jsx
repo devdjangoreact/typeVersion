@@ -7,7 +7,8 @@ export const ContextProvider = ({ children }) => {
   // const [categoryId, setCategory] = useState();
   // const [postId, setPost] = useState();
   // const [typeData, setTypeData] = useState();
-  // const [categoryPost, setCategoryPost] = useState();
+  const [categoryPost, setCategoryPost] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
@@ -17,6 +18,10 @@ export const ContextProvider = ({ children }) => {
         setMenuState,
         NavbarState,
         setNavbarState,
+        categoryPost,
+        setCategoryPost,
+        showModal,
+        setShowModal,
         // typeData,
         // setTypeData,
         // postId,

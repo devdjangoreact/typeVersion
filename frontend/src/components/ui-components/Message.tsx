@@ -1,6 +1,6 @@
 import React from "react";
 
-function Message(variant?: string, children?: string) {
+function Message() {
   return (
     <div
       role="alert"
@@ -17,8 +17,8 @@ function Message(variant?: string, children?: string) {
             className="h-6 w-6"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
@@ -26,7 +26,6 @@ function Message(variant?: string, children?: string) {
 
         <div className="flex-1">
           <strong className="block font-medium text-gray-900">
-            {" "}
             Changes saved{" "}
           </strong>
 
@@ -47,8 +46,8 @@ function Message(variant?: string, children?: string) {
             className="h-6 w-6"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>

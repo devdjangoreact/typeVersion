@@ -116,7 +116,11 @@ class SignupView(APIView):
 
                         data = UserSerializerWithToken(user).data
 
-                        return Response({ 'success': 'User created successfully', "data":data })
+                        refresh = RefreshToken.for_user(user)
+                        data["refreshToken"] = str(refresh)
+                        data["accessToken"] = str(refresh.access_token)
+
+                        return Response({ 'success': 'User created successfully', "user":data, "token": str(refresh.access_token)})
             else:
                 return Response({ 'error': 'Passwords do not match' })
         except:
@@ -161,7 +165,7 @@ class LoginView(APIView):
  
                 data["user_profile"] = user_profileSerializer.data
 
-                return Response({ 'success': 'User authenticated', "data":data })
+                return Response({ 'success': 'User authenticated', "user":data, "token": str(refresh.access_token)})
                
             else:
                 return Response({ 'error': 'Error Authenticating' })

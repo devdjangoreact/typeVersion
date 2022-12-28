@@ -1,7 +1,9 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, FormEvent } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import NavBarDropDown from "./NavBarDropDown";
 
 interface ClassProps {
-  class: string;
+  class?: string;
 }
 
 // Profile Dropdown
@@ -48,13 +50,13 @@ const ProfileDropDown = (props: ClassProps) => {
       >
         {navigation.map((item, idx) => (
           <li key={idx}>
-            <a
+            <Link
               key={idx}
               className="block text-gray-600 lg:hover:bg-gray-50 lg:p-2.5"
-              href={item.path}
+              to={item.path}
             >
               {item.title}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
@@ -62,16 +64,29 @@ const ProfileDropDown = (props: ClassProps) => {
   );
 };
 
-export function NavBar() {
+export function NavBar(props: ClassProps) {
+  const [search, setSearch] = useState("");
+
   const navigation = [
-    { title: "Favourites", path: "/favourites" },
-    { title: "Careers", path: "/favourites" },
-    { title: "Guides", path: "/favourites" },
-    { title: "Partners", path: "/favourites" },
+    { title: "Favourites", path: "/github/favourites" },
+    { title: "Careers", path: "/github/favourites" },
+    { title: "Guides", path: "/github/favourites" },
+    { title: "Partners", path: "/github/favourites" },
   ];
+
+  const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // dispatch(login(loginUser));
+  };
+
   return (
-    <nav className="flex items-center justify-center space-x-4 px-4 mx-auto bg-blue-200 border-b rounded-lg mb-1 min-h-[55px]">
-      <form className="flex items-center space-x-2 border rounded-md p-2 text-gray-900 bg-blue-100">
+    <nav className={props.class}>
+      <form
+        className="flex items-center space-x-2 border rounded-md p-2
+       text-gray-900 bg-blue-100"
+        onSubmit={onSubmitHandler}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5 flex-none "
@@ -92,6 +107,7 @@ export function NavBar() {
           placeholder="Search"
         />
       </form>
+      <NavBarDropDown />
       <div className="flex-1 flex items-center justify-between px-4 ">
         <ul className="space-y-5 lg:flex lg:space-x-6 lg:space-y-0 lg:mt-0 ">
           {navigation.map((item, idx) => (
@@ -99,9 +115,9 @@ export function NavBar() {
               key={idx}
               className="text-black h-10 px-2 hover:bg-orange-300 rounded-lg py-2 "
             >
-              <a className="text-center" href={item.path}>
+              <Link className="text-center" to={item.path}>
                 {item.title}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

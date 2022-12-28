@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     "movies",
     "drf_yasg",
     "corsheaders",
-    "codehelp",
+    "sections",
     'terminal'
 ]
 
@@ -222,8 +222,8 @@ if not DEBUG:
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_ALL_ORIGINS = True
 
-CORS_ORIGIN_WHITELIST = ["http://localhost:3000"]
-CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
+CORS_ORIGIN_WHITELIST = ["http://localhost:3000", 'http://127.0.0.1:8000']
+CSRF_TRUSTED_ORIGINS = ["http://localhost:3000", 'http://127.0.0.1:8000']
 
 # SECURE_SSL_REDIRECT=False
 # SESSION_COOKIE_SECURE=False
@@ -236,6 +236,6 @@ CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-TERMINAL_SECURE = True  # False to allow http 
-TERMINAL_DEBUG_ONLY = True # False to allow in prod
+# TERMINAL_SECURE = True  # False to allow http 
+# TERMINAL_DEBUG_ONLY = True # False to allow in prod
 TERMINAL_WHITELIST = ["127.0.0.1"]  # List of IPs to be allowed - NB: All allowed by default
