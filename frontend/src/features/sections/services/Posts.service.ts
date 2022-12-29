@@ -29,7 +29,7 @@ const updatePost = async (
   };
 
   const response = await axios.put(
-    `http://127.0.0.1:8000/post/${form["id"]}/`,
+    `${process.env.REACT_APP_BASE_API}/post/${form["id"]}/`,
     form,
     config
   );
@@ -49,7 +49,7 @@ const createPost = async (
   };
 
   const response = await axios.post(
-    `http://127.0.0.1:8000/posts/`,
+    `${process.env.REACT_APP_BASE_API}/posts/`,
     form,
     config
   );
@@ -67,7 +67,7 @@ const deletePost = async (id: string | undefined) => {
   };
 
   const response = await axios.delete(
-    `http://127.0.0.1:8000/post/${id}/`,
+    `${process.env.REACT_APP_BASE_API}/post/${id}/`,
 
     config
   );

@@ -40,7 +40,7 @@ const updateCategory = async (
     },
   };
   const response = await axios.put(
-    `http://127.0.0.1:8000/category/${form["id"]}/`,
+    `${process.env.REACT_APP_BASE_API}/category/${form["id"]}/`,
     form,
     config
   );
@@ -59,7 +59,7 @@ const createCategory = async (
   };
   console.log(form);
   const response = await axios.post(
-    `http://127.0.0.1:8000/category/`,
+    `${process.env.REACT_APP_BASE_API}/category/`,
     form,
     config
   );
@@ -75,7 +75,7 @@ const deleteCategory = async (id: string | undefined) => {
     },
   };
   const response = await axios.delete(
-    `http://127.0.0.1:8000/category/${id}`,
+    `${process.env.REACT_APP_BASE_API}/category/${id}`,
 
     config
   );

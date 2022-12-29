@@ -1,0 +1,45 @@
+
+ssh -i "C:\Users\dev_home\Desktop\vps\solution.pem" ubuntu@ec2-3-83-161-23.compute-1.amazonaws.com
+ ssh -i "solution.pem" ubuntu@ec2-3-83-161-23.compute-1.amazonaws.com
+
+sudo apt update
+sudo apt-get install python3-pip
+sudo pip3 install gunicorn
+sudo apt-get install supervisor
+sudo apt-get install nginx
+sudo pip3 install django
+django-admin startproject core
+
+python3 manage.py makemigrations
+python3 manage.py migrate
+
+python3 manage.py makemigrations - table["user_profile"]
+
+python3 manage.py collectstatic
+python3 manage.py createsuperuser
+python3 manage.py runserver
+python3 manage.py startapp user_profile
+
+python3 -m venv venv
+source venv/bin/activate
+
+pip3 install -r requirements.txt
+
+DJANGO START AMAZON  0.0.0.0:8000 
+
+python3 -m pyxtermjs
+
+type script
+
+  // {
+    //   _postsEdit &&
+    //     _postsEdit.map(
+    //       (post) =>
+    //         (_id = String(post.id)
+    //           ? __posts.push(Object.assign({ edit: !post.edit }, post))
+    //           : __posts.push(Object.assign({ edit: !post.edit }, post)))
+    //     );
+    // }
+
+    const target = event.target as HTMLTextAreaElement;
+    // var _id = parseFloat(target.id);
